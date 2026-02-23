@@ -1,0 +1,1233 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Korea Business Services</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #2466eb;
+            --primary-lightblue: #5a8ff0;
+            --primary-darkblue: #1a4eb8;
+            --primary-paleblue: #a8c8ff;
+            --primary-softblue: #d0e3ff;
+            --primary-white: #FFFFFF;
+            --primary-cream: #F8FAFF;
+            --primary-gray: #4A4A4A;
+            --accent-blue: #3b7bf5;
+            --dark-navy: #1A1A1A;
+            --light-cream: #FFFFFF;
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --shadow-soft: 0 10px 40px rgba(0,0,0,0.1);
+            --shadow-medium: 0 15px 50px rgba(0,0,0,0.2);
+            --gradient-warm: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-lightblue) 50%, var(--primary-paleblue) 100%);
+            --gradient-cool: linear-gradient(135deg, var(--primary-white) 0%, var(--primary-cream) 100%);
+            --gradient-vibrant: linear-gradient(135deg, var(--primary-cream) 0%, var(--primary-white) 100%);
+            --gradient-focus: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-darkblue) 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', 'Outfit', sans-serif;
+            background: var(--light-cream);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body.rtl {
+            direction: rtl;
+        }
+
+        /* Background Decorations */
+        .bg-decoration {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.6;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .bg-circle-1 {
+            width: 600px;
+            height: 600px;
+            background: var(--gradient-warm);
+            top: -200px;
+            left: -200px;
+            animation: float1 20s ease-in-out infinite;
+            opacity: 0.4;
+        }
+
+        .bg-circle-2 {
+            width: 500px;
+            height: 500px;
+            background: rgba(26, 26, 26, 0.3);
+            bottom: -150px;
+            right: 20%;
+            animation: float2 25s ease-in-out infinite;
+        }
+
+        .bg-circle-3 {
+            width: 400px;
+            height: 400px;
+            background: var(--gradient-warm);
+            top: 40%;
+            right: -100px;
+            animation: float3 18s ease-in-out infinite;
+            opacity: 0.3;
+        }
+
+        @keyframes float1 {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(50px, 30px) rotate(5deg); }
+            66% { transform: translate(-30px, 50px) rotate(-5deg); }
+        }
+
+        @keyframes float2 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-60px, -40px) scale(1.1); }
+        }
+
+        @keyframes float3 {
+            0%, 100% { transform: translate(0, 0); }
+            25% { transform: translate(-40px, 30px); }
+            75% { transform: translate(30px, -20px); }
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: var(--primary-blue);
+            backdrop-filter: blur(20px);
+            border-bottom: 2px solid var(--primary-lightblue);
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            width: 80px;
+            height: 80px;
+            background-color: #1A4EB8;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-white);
+            font-size: 24px;
+            font-weight: 800;
+            box-shadow: 0 4px 15px rgba(36, 102, 235, 0.3);
+        }
+
+        .logo-text {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            font-size: 22px;
+            background: var(--primary-white);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Language Dropdown */
+        .lang-select-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .lang-select {
+            appearance: none;
+            -webkit-appearance: none;
+            background: var(--primary-white);
+            color: var(--primary-blue);
+            border: none;
+            border-radius: 25px;
+            padding: 10px 42px 10px 18px;
+            font-size: 14px;
+            font-weight: 700;
+            font-family: 'Outfit', 'Noto Sans KR', sans-serif;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.4);
+            transition: all 0.3s ease;
+            outline: none;
+            min-width: 160px;
+        }
+
+        .lang-select:hover {
+            box-shadow: 0 6px 20px rgba(255, 255, 255, 0.6);
+            transform: translateY(-1px);
+        }
+
+        .lang-select-arrow {
+            position: absolute;
+            right: 14px;
+            pointer-events: none;
+            color: var(--primary-blue);
+            font-size: 12px;
+        }
+
+        /* Main Wrapper */
+        .main-wrapper {
+            display: flex;
+            padding-top: 100px;
+            min-height: 100vh;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            padding: 40px;
+            transition: margin-right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            margin-right: 380px;
+        }
+
+        .main-content.expanded {
+            margin-right: 70px;
+        }
+
+        /* Top Section - 3 Column Grid */
+        .top-section {
+            display: grid;
+            grid-template-columns: 1.1fr 1.4fr 1.2fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        /* Brand Area */
+        .brand-area {
+            background: var(--card-bg);
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: var(--shadow-soft);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(36, 102, 235, 0.3);
+        }
+
+        .brand-area::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: var(--gradient-warm);
+        }
+
+        .subtitle-image {
+            width: 350px;
+            height: 10px;
+            background: white;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .title-image {
+            width: 100%;
+            height: 120px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--primary-lightblue), var(--primary-darkblue));
+            border-radius: 16px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-white);
+            font-size: 32px;
+            font-weight: 900;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .korean-tagline {
+            font-size: 26px;
+            color: var(--dark-navy);
+            line-height: 1.8;
+            font-weight: 500;
+        }
+
+        .korean-tagline span {
+            background: linear-gradient(120deg, var(--primary-darkblue), var(--primary-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+        }
+
+        /* Image Area */
+        .image-area {
+            background: var(--card-bg);
+            border-radius: 24px;
+            box-shadow: var(--shadow-soft);
+            overflow: hidden;
+            position: relative;
+            border: 1px solid rgba(36, 102, 235, 0.3);
+        }
+
+        .featured-image {
+            width: 100%;
+            height: 100%;
+            min-height: 300px;
+            background: linear-gradient(135deg,
+                var(--primary-softblue) 0%,
+                var(--primary-white) 50%,
+                var(--primary-paleblue) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .featured-image::before {
+            content: '';
+            position: absolute;
+            inset: 20px;
+            border: 3px dashed var(--primary-blue);
+            border-radius: 16px;
+        }
+
+        .featured-image i {
+            font-size: 80px;
+            color: var(--primary-blue);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .featured-image img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.9; }
+            50% { transform: scale(1.05); opacity: 1; }
+        }
+
+        /* Services Area */
+        .services-area {
+            background: var(--card-bg);
+            border-radius: 24px;
+            padding: 35px;
+            box-shadow: var(--shadow-soft);
+            border: 1px solid rgba(36, 102, 235, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .services-area::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: var(--primary-blue);
+        }
+
+        .services-title {
+            font-size: 26px;
+            font-weight: 800;
+            margin-bottom: 25px;
+            color: var(--dark-navy);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .services-title::before {
+            content: '';
+            width: 5px;
+            height: 28px;
+            background: var(--primary-blue);
+            border-radius: 3px;
+            flex-shrink: 0;
+        }
+
+        .service-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            padding: 15px;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, rgba(36, 102, 235, 0.1), rgba(90, 143, 240, 0.05));
+            border-radius: 14px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .service-item:hover {
+            transform: translateX(8px);
+            box-shadow: 0 5px 20px rgba(36, 102, 235, 0.3);
+        }
+
+        body.rtl .service-item:hover {
+            transform: translateX(-8px);
+        }
+
+        .service-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .service-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .service-item:nth-child(2) .service-icon { background: var(--primary-blue); color: var(--primary-white); }
+        .service-item:nth-child(3) .service-icon { background: var(--primary-lightblue); color: var(--primary-white); }
+        .service-item:nth-child(4) .service-icon { background: var(--primary-darkblue); color: var(--primary-white); }
+        .service-item:nth-child(5) .service-icon { background: var(--primary-paleblue); color: var(--dark-navy); }
+
+        .service-desc {
+            font-size: 20px;
+            color: var(--dark-navy);
+            line-height: 1.6;
+            font-weight: 500;
+        }
+
+        .price-highlight {
+            background: var(--gradient-focus);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+            font-size: 22px;
+        }
+
+        /* Bottom Section Title */
+        .bottom-section-title {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--dark-navy);
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .bottom-section-title::before {
+            content: '';
+            width: 6px;
+            height: 34px;
+            background: var(--primary-blue);
+            border-radius: 3px;
+            flex-shrink: 0;
+        }
+
+        body.rtl .bottom-section-title::before,
+        body.rtl .services-title::before {
+            order: 1;
+        }
+
+        /* Bottom Section - 4 Column Cards */
+        .bottom-section {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+        }
+
+        .service-card {
+            background: var(--card-bg);
+            border-radius: 24px;
+            padding: 30px 25px;
+            box-shadow: var(--shadow-soft);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid transparent;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+        }
+
+        .service-card:nth-child(1)::before { background: var(--primary-blue); }
+        .service-card:nth-child(1):hover { border-color: rgba(36, 102, 235, 0.5); }
+
+        .service-card:nth-child(2)::before { background: var(--primary-lightblue); }
+        .service-card:nth-child(2):hover { border-color: rgba(90, 143, 240, 0.5); }
+
+        .service-card:nth-child(3)::before { background: var(--primary-darkblue); }
+        .service-card:nth-child(3):hover { border-color: rgba(26, 78, 184, 0.5); }
+
+        .service-card:nth-child(4)::before { background: var(--primary-paleblue); }
+        .service-card:nth-child(4):hover { border-color: rgba(168, 200, 255, 0.5); }
+
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            color: white;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .service-card:nth-child(1) .card-icon { background: var(--primary-blue); color: var(--primary-white); box-shadow: 0 8px 25px rgba(36, 102, 235, 0.4); }
+        .service-card:nth-child(2) .card-icon { background: var(--primary-lightblue); color: var(--primary-white); box-shadow: 0 8px 25px rgba(90, 143, 240, 0.4); }
+        .service-card:nth-child(3) .card-icon { background: var(--primary-darkblue); color: var(--primary-white); box-shadow: 0 8px 25px rgba(26, 78, 184, 0.4); }
+        .service-card:nth-child(4) .card-icon { background: var(--primary-blue); color: var(--primary-white); box-shadow: 0 8px 25px rgba(168, 200, 255, 0.4); }
+
+        .card-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--dark-navy);
+            margin-bottom: 18px;
+            line-height: 1.4;
+        }
+
+        .card-bullets {
+            list-style: none;
+        }
+
+        .card-bullets li {
+            position: relative;
+            padding-left: 22px;
+            margin-bottom: 12px;
+            font-size: 20px;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        body.rtl .card-bullets li {
+            padding-left: 0;
+            padding-right: 22px;
+        }
+
+        .card-bullets li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+
+        body.rtl .card-bullets li::before {
+            left: auto;
+            right: 0;
+        }
+
+        .service-card:nth-child(1) .card-bullets li::before { background: var(--primary-blue); }
+        .service-card:nth-child(2) .card-bullets li::before { background: var(--primary-lightblue); }
+        .service-card:nth-child(3) .card-bullets li::before { background: var(--primary-darkblue); }
+        .service-card:nth-child(4) .card-bullets li::before { background: var(--primary-paleblue); }
+
+        /* Right Sidebar */
+        .sidebar {
+            position: fixed;
+            right: 0;
+            top: 82px;
+            bottom: 0;
+            width: 360px;
+            background: var(--primary-blue);
+            backdrop-filter: blur(20px);
+            border-left: 2px solid var(--primary-lightblue);
+            padding: 35px 30px;
+            overflow-y: auto;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 100;
+        }
+
+        .sidebar.collapsed {
+            transform: translateX(290px);
+        }
+
+        .sidebar-toggle {
+            position: absolute;
+            left: -20px;
+            top: 30px;
+            width: 40px;
+            height: 40px;
+            background: var(--primary-white);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-blue);
+            font-size: 16px;
+            box-shadow: 0 4px 15px rgba(36, 102, 235, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .sidebar-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .sidebar-toggle i {
+            transition: transform 0.4s ease;
+        }
+
+        .sidebar.collapsed .sidebar-toggle i {
+            transform: rotate(180deg);
+        }
+
+        .sidebar-section {
+            margin-bottom: 35px;
+        }
+
+        .sidebar-heading {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary-white);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .sidebar-heading::after {
+            content: '';
+            flex: 1;
+            height: 2px;
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0.5), transparent);
+        }
+
+        /* Partners */
+        .partners-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .partner-link {
+            display: block;
+            padding: 12px 15px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05));
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .partner-link:hover {
+            transform: translateX(5px);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.1));
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+        }
+
+        .partner-logo {
+            width: 100%;
+            height: 40px;
+            background: linear-gradient(90deg, var(--primary-white), var(--primary-softblue));
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-blue);
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        /* Contacts */
+        .contact-item {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05));
+            border-radius: 16px;
+            padding: 20px;
+            padding-right: 20px;
+            margin-bottom: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .contact-name {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary-white);
+            margin-bottom: 5px;
+        }
+
+        .contact-phone {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .contact-phone i {
+            color: var(--primary-white);
+        }
+
+        .contact-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .contact-btn {
+            flex: 1;
+            padding: 12px 18px;
+            border: none;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .btn-kakao {
+            background: #FEE500;
+            color: #3C1E1E;
+        }
+
+        .btn-kakao:hover {
+            background: #E6CF00;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(254, 229, 0, 0.5);
+        }
+
+        .btn-whatsapp {
+            background: #25D366;
+            color: white;
+            margin-right: 10px;
+            padding-right: 10px;
+        }
+
+        .btn-whatsapp:hover {
+            background: #1DA851;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.5);
+        }
+
+        /* Responsive */
+        @media (max-width: 1400px) {
+            .bottom-section {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 1200px) {
+            .top-section {
+                grid-template-columns: 1fr;
+            }
+
+            .main-content {
+                margin-right: 70px;
+            }
+
+            .sidebar {
+                transform: translateX(290px);
+            }
+
+            .sidebar.expanded {
+                transform: translateX(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 20px;
+                margin-right: 0;
+            }
+
+            .bottom-section {
+                grid-template-columns: 1fr;
+            }
+
+            header {
+                padding: 15px 20px;
+            }
+
+            .sidebar {
+                width: 100%;
+                transform: translateX(100%);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Decorations -->
+    <div class="bg-decoration bg-circle-1"></div>
+    <div class="bg-decoration bg-circle-2"></div>
+    <div class="bg-decoration bg-circle-3"></div>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <div class="logo-icon">
+            <img src="./logo-mac.jpg" alt="MAC GLOBAL 로고" style="width: 80px; height: auto;"></div>
+        </div>
+        <div class="lang-select-wrapper">
+            <select class="lang-select" id="langSelect" onchange="setLanguage(this.value)">
+                <option value="ko" selected>🇰🇷 한국어</option>
+                <option value="en">🇺🇸 English</option>
+                <option value="ru">🇷🇺 Русский</option>
+                <option value="kk">🇰🇿 Қазақша</option>
+                <option value="ar">🇸🇦 العربية</option>
+            </select>
+            <i class="fas fa-chevron-down lang-select-arrow"></i>
+        </div>
+    </header>
+
+    <!-- Main Wrapper -->
+    <div class="main-wrapper">
+        <!-- Main Content -->
+        <main class="main-content" id="mainContent">
+            <!-- Top Section -->
+            <section class="top-section">
+                <!-- Brand Area -->
+                <div class="brand-area">
+                    <div class="subtitle-image">
+                        <p data-i18n-html="subtitle" style="font-size: 26px; color: rgb(205, 15, 15); font-weight: 700;"><span>수출 지원 센터</span></p>
+                    </div>
+                    <div class="title-image">
+                        <img src="./title.png" alt="수출 지원 센터" style="width: 360px; height: auto;">
+                    </div>
+                    <p class="korean-tagline" data-i18n-html="tagline">
+                        <span>외국인 바이어</span>를 위한<br>
+                        한국 비즈니스 <span>종합 솔루션</span><br>
+                        신뢰와 전문성으로 함께합니다
+                    </p>
+                </div>
+
+                <!-- Image Area -->
+                <div class="image-area">
+                    <div class="featured-image">
+                        <img src="./process.png" style="width: 560px; height: auto;">
+                    </div>
+                </div>
+
+                <!-- Services Area -->
+                <div class="services-area">
+                    <h2 class="services-title" data-i18n="servicesTitle">신뢰 및 전문성</h2>
+
+                    <div class="service-item">
+                        <div class="service-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <p class="service-desc" data-i18n-html="service1">수출업무 기본 수수료 <span class="price-highlight">200,000원/월 부터~</span></p>
+                    </div>
+
+                    <div class="service-item">
+                        <div class="service-icon">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <p class="service-desc" data-i18n="service2">글로비스 오토허브등 국내 중고차 경매장 아이디 다수 보유</p>
+                    </div>
+
+                    <div class="service-item">
+                        <div class="service-icon">
+                            <i class="fas fa-file-invoice-dollar"></i>
+                        </div>
+                        <p class="service-desc" data-i18n="service3">당일 말소, 당일 면장 서비스</p>
+                    </div>
+
+                    <div class="service-item">
+                        <div class="service-icon">
+                            <i class="fas fa-truck-fast"></i>
+                        </div>
+                        <p class="service-desc" data-i18n="service4">왓츠앱 & 카카오톡 실시간 상담 서비스</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Bottom Section - Service Cards -->
+            <h2 class="bottom-section-title" data-i18n="bottomTitle">주요 서비스</h2>
+            <section class="bottom-section">
+                <!-- Card 1 -->
+                <div class="service-card">
+                    <div class="card-icon">
+                        <i class="fas fa-file-export"></i>
+                    </div>
+                    <h3 class="card-title" data-i18n="card1Title">수출 통관 및 인보이스 발행 서비스</h3>
+                    <ul class="card-bullets">
+                        <li data-i18n="card1_1">수출입 신고 및 통관 업무 대행</li>
+                        <li data-i18n="card1_2">Commercial Invoice 작성 및 발행</li>
+                        <li data-i18n="card1_3">원산지 증명서 발급 지원</li>
+                        <li data-i18n="card1_4">FTA 협정세율 적용 컨설팅</li>
+                        <li data-i18n="card1_5">관세 환급 신청 대행</li>
+                    </ul>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="service-card">
+                    <div class="card-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <h3 class="card-title" data-i18n="card2Title">외국인 사업자 등록 및 관리 서비스</h3>
+                    <ul class="card-bullets">
+                        <li data-i18n="card2_1">외국인 법인 설립 및 사업자등록 대행</li>
+                        <li data-i18n="card2_2">법인통장 입출금 관리 지원</li>
+                        <li data-i18n="card2_3">부가세 신고 및 신속한 환급 신청</li>
+                        <li data-i18n="card2_4">중고차 수출 전문 세무사 상주, 맞춤 절세 상담</li>
+                    </ul>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="service-card">
+                    <div class="card-icon">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <h3 class="card-title" data-i18n="card3Title">한국 체류 바이어 원스톱 서비스</h3>
+                    <ul class="card-bullets">
+                        <li data-i18n="card3_1">바이어 및 가족 초청장 & 비자 발급 지원</li>
+                        <li data-i18n="card3_2">K-ETA 신청 대행 & 사전 승인 서비스</li>
+                        <li data-i18n="card3_3">국내 거주지 주소 등록 지원</li>
+                    </ul>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="service-card">
+                    <div class="card-icon">
+                        <i class="fas fa-boxes-stacked"></i>
+                    </div>
+                    <h3 class="card-title" data-i18n="card4Title">물류 서비스</h3>
+                    <ul class="card-bullets">
+                        <li data-i18n="card4_1">중고차 쇼링 대행</li>
+                        <li data-i18n="card4_2">중고차 컨테이너 및 로로선 배송대행</li>
+                    </ul>
+                </div>
+            </section>
+        </main>
+
+        <!-- Right Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <button class="sidebar-toggle" onclick="toggleSidebar()">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+
+            <!-- Partners Section -->
+            <div class="sidebar-section">
+                <h4 class="sidebar-heading" data-i18n="sidebarPartners">파트너</h4>
+                <div class="partners-grid">
+                    <a href="https://autobell.co.kr/autoAuction/auctionGate" class="partner-link">
+                        <div class="partner-logo">
+                            <img src="./autobell.png" style="width: 100px; height: auto;" alt="MAC GLOBAL 로고">
+                        </div>
+                    </a>
+                    <a href="https://www.sellcarauction.co.kr/newfront/index.do" class="partner-link">
+                        <div class="partner-logo">
+                            <img src="./autohub.png" style="width: 100px; height: auto;" alt="PARTNER B 로고">
+                        </div>
+                    </a>
+                    <a href="https://www.kcarauction.com/kcar/main.do" class="partner-link">
+                        <div class="partner-logo">
+                            <img src="./kcar.png" style="width: 100px; height: auto;" alt="PARTNER C 로고">
+                        </div>
+                    </a>
+                    <a href="https://auction.skcarrental.com/" class="partner-link">
+                        <div class="partner-logo">
+                            <img src="./sk.png" style="width: 100px; height: auto;" alt="PARTNER D 로고">
+                        </div>
+                    </a>
+                    <a href="https://www.lotteautoauction.net/hp/pub/cmm/viewMain.do" class="partner-link">
+                        <div class="partner-logo">
+                            <img src="./lotte.png" style="width: 100px; height: auto;" alt="PARTNER E 로고">
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Contacts Section -->
+            <div class="sidebar-section">
+                <h4 class="sidebar-heading" data-i18n="sidebarContacts">연락처</h4>
+
+                <div class="contact-item">
+                    <div class="contact-name" data-i18n="contact1">담당자 1</div>
+                    <div class="contact-phone">
+                        <i class="fas fa-phone"></i>
+                        +82-10-1234-5678
+                    </div>
+                    <div class="contact-buttons">
+                        <a href="#" class="contact-btn btn-kakao">
+                            <i class="fas fa-comment"></i>
+                            KakaoTalk
+                        </a>
+                        <a href="#" class="contact-btn btn-whatsapp">
+                            <i class="fab fa-whatsapp"></i>
+                            WhatsApp
+                        </a>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-name" data-i18n="contact2">담당자 2</div>
+                    <div class="contact-phone">
+                        <i class="fas fa-phone"></i>
+                        +82-10-9876-5432
+                    </div>
+                    <div class="contact-buttons">
+                        <a href="#" class="contact-btn btn-kakao">
+                            <i class="fas fa-comment"></i>
+                            KakaoTalk
+                        </a>
+                        <a href="#" class="contact-btn btn-whatsapp">
+                            <i class="fab fa-whatsapp"></i>
+                            WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <script>
+        const translations = {
+            ko: {
+                subtitle: '<span>수출 지원 센터</span>',
+                tagline: '<span>외국인 바이어</span>를 위한<br>한국 비즈니스 <span>종합 솔루션</span><br>신뢰와 전문성으로 함께합니다',
+                servicesTitle: '신뢰 및 전문성',
+                service1: '수출업무 기본 수수료 <span class="price-highlight">200,000원/월 부터~</span>',
+                service2: '글로비스 오토허브등 국내 중고차 경매장 아이디 다수 보유',
+                service3: '당일 말소, 당일 면장 서비스',
+                service4: '왓츠앱 & 카카오톡 실시간 상담 서비스',
+                bottomTitle: '주요 서비스',
+                card1Title: '수출 통관 및 인보이스 발행 서비스',
+                card1_1: '수출입 신고 및 통관 업무 대행',
+                card1_2: 'Commercial Invoice 작성 및 발행',
+                card1_3: '원산지 증명서 발급 지원',
+                card1_4: 'FTA 협정세율 적용 컨설팅',
+                card1_5: '관세 환급 신청 대행',
+                card2Title: '외국인 사업자 등록 및 관리 서비스',
+                card2_1: '외국인 법인 설립 및 사업자등록 대행',
+                card2_2: '법인통장 입출금 관리 지원',
+                card2_3: '부가세 신고 및 신속한 환급 신청',
+                card2_4: '중고차 수출 전문 세무사 상주, 맞춤 절세 상담',
+                card3Title: '한국 체류 바이어 원스톱 서비스',
+                card3_1: '바이어 및 가족 초청장 & 비자 발급 지원',
+                card3_2: 'K-ETA 신청 대행 & 사전 승인 서비스',
+                card3_3: '국내 거주지 주소 등록 지원',
+                card4Title: '물류 서비스',
+                card4_1: '중고차 쇼링 대행',
+                card4_2: '중고차 컨테이너 및 로로선 배송대행',
+                sidebarPartners: '파트너',
+                sidebarContacts: '연락처',
+                contact1: '담당자 1',
+                contact2: '담당자 2',
+            },
+            en: {
+                subtitle: '<span>Export Support Center</span>',
+                tagline: 'Comprehensive <span>Business Solutions</span><br>for <span>Foreign Buyers</span><br>Together with Trust and Expertise',
+                servicesTitle: 'Trust & Expertise',
+                service1: 'Basic export fee from <span class="price-highlight">₩200,000/month~</span>',
+                service2: 'Multiple auction IDs at domestic used car auctions including Glovis AutoHub',
+                service3: 'Same-day deregistration & export permit service',
+                service4: 'WhatsApp & KakaoTalk real-time consultation service',
+                bottomTitle: 'Main Services',
+                card1Title: 'Export Customs Clearance & Invoice Issuance',
+                card1_1: 'Export/import declaration & customs clearance',
+                card1_2: 'Commercial Invoice preparation & issuance',
+                card1_3: 'Certificate of origin issuance support',
+                card1_4: 'FTA preferential tariff application consulting',
+                card1_5: 'Customs duty refund application',
+                card2Title: 'Foreign Business Registration & Management',
+                card2_1: 'Foreign corporation establishment & business registration',
+                card2_2: 'Corporate account deposit/withdrawal management',
+                card2_3: 'VAT filing & expedited refund application',
+                card2_4: 'Resident used car export tax accountant, tailored tax consulting',
+                card3Title: 'One-Stop Service for Buyers Staying in Korea',
+                card3_1: 'Buyer & family invitation letter & visa support',
+                card3_2: 'K-ETA application & pre-approval service',
+                card3_3: 'Domestic residence address registration support',
+                card4Title: 'Logistics Services',
+                card4_1: 'Used car shoring service',
+                card4_2: 'Used car container & RoRo vessel shipping',
+                sidebarPartners: 'Partners',
+                sidebarContacts: 'Contacts',
+                contact1: 'Contact 1',
+                contact2: 'Contact 2',
+            },
+            ru: {
+                subtitle: '<span>Центр поддержки экспорта</span>',
+                tagline: 'Комплексные бизнес-<span>решения</span><br>для <span>иностранных покупателей</span><br>С доверием и профессионализмом',
+                servicesTitle: 'Доверие и профессионализм',
+                service1: 'Базовая комиссия за экспорт от <span class="price-highlight">200 000 вон/мес~</span>',
+                service2: 'Множество аккаунтов на аукционах б/у авто, включая Glovis AutoHub',
+                service3: 'Снятие с учёта и экспортное разрешение в день обращения',
+                service4: 'Онлайн-консультации через WhatsApp и KakaoTalk',
+                bottomTitle: 'Основные услуги',
+                card1Title: 'Таможенное оформление и выставление инвойсов',
+                card1_1: 'Декларирование и таможенное оформление',
+                card1_2: 'Составление и выдача коммерческого инвойса',
+                card1_3: 'Поддержка получения сертификата происхождения',
+                card1_4: 'Консультации по льготным ставкам ФТА',
+                card1_5: 'Оформление возврата таможенных пошлин',
+                card2Title: 'Регистрация и управление иностранным бизнесом',
+                card2_1: 'Регистрация иностранного юридического лица',
+                card2_2: 'Управление корпоративным счётом',
+                card2_3: 'Подача НДС-декларации и ускоренный возврат',
+                card2_4: 'Налоговый консультант по экспорту авто',
+                card3Title: 'Комплексный сервис для покупателей в Корее',
+                card3_1: 'Поддержка получения приглашения и визы',
+                card3_2: 'Оформление K-ETA и предварительное одобрение',
+                card3_3: 'Регистрация адреса проживания в Корее',
+                card4Title: 'Логистика',
+                card4_1: 'Агентирование по шорингу автомобилей',
+                card4_2: 'Доставка авто контейнером и Ро-Ро судном',
+                sidebarPartners: 'Партнёры',
+                sidebarContacts: 'Контакты',
+                contact1: 'Менеджер 1',
+                contact2: 'Менеджер 2',
+            },
+            kk: {
+                subtitle: '<span>Экспортты қолдау орталығы</span>',
+                tagline: '<span>Шетелдік сатып алушылар</span> үшін<br>Корея бизнесінің <span>кешенді шешімі</span><br>Сенім мен кәсіпқойлықпен бірге',
+                servicesTitle: 'Сенім және кәсіпқойлық',
+                service1: 'Экспорт қызметінің негізгі ақысы <span class="price-highlight">айына 200 000 вон~</span>',
+                service2: 'Glovis AutoHub және басқа отандық қолданылған көлік аукциондарында бірнеше тіркелгі бар',
+                service3: 'Күні бойы тіркеуден шығару және экспорттық рұқсат беру',
+                service4: 'WhatsApp және KakaoTalk арқылы нақты уақыт кеңесі',
+                bottomTitle: 'Негізгі қызметтер',
+                card1Title: 'Экспорттық кедендік өткізу және инвойс беру',
+                card1_1: 'Экспорт/импорт декларациясы және кедендік өткізу',
+                card1_2: 'Коммерциялық инвойс жасау және беру',
+                card1_3: 'Шығу тегі сертификатын алуға қолдау',
+                card1_4: 'ЕСА жеңілдікті тарифі бойынша кеңес беру',
+                card1_5: 'Кедендік баж салығын қайтарту',
+                card2Title: 'Шетелдік бизнесті тіркеу және басқару',
+                card2_1: 'Шетелдік заңды тұлғаны тіркеу',
+                card2_2: 'Корпоративтік шот айналымын басқару',
+                card2_3: 'ҚҚС декларациясы және жедел қайтару',
+                card2_4: 'Қолданылған авто экспортына салық кеңесшісі',
+                card3Title: 'Кореяда тұратын сатып алушыларға кешенді қызмет',
+                card3_1: 'Шақыру хаты және виза алуға қолдау',
+                card3_2: 'K-ETA рәсімдеу және алдын ала мақұлдау',
+                card3_3: 'Тұрғылықты мекенжайды тіркеуге қолдау',
+                card4Title: 'Логистика қызметтері',
+                card4_1: 'Автокөліктерді шорингтеу агенттігі',
+                card4_2: 'Контейнермен және Ро-Ро кемесімен жеткізу',
+                sidebarPartners: 'Серіктестер',
+                sidebarContacts: 'Байланыс',
+                contact1: 'Менеджер 1',
+                contact2: 'Менеджер 2',
+            },
+            ar: {
+                subtitle: '<span>مركز دعم الصادرات</span>',
+                tagline: 'حلول أعمال كورية <span>شاملة</span><br>لـ <span>المشترين الأجانب</span><br>بثقة واحترافية',
+                servicesTitle: 'الثقة والاحترافية',
+                service1: 'الرسوم الأساسية للتصدير من <span class="price-highlight">200,000 وون/شهر~</span>',
+                service2: 'نمتلك حسابات متعددة في مزادات السيارات المستعملة المحلية بما فيها Glovis AutoHub',
+                service3: 'خدمة إلغاء التسجيل وإذن التصدير في نفس اليوم',
+                service4: 'استشارة فورية عبر واتساب وكاكاو توك',
+                bottomTitle: 'الخدمات الرئيسية',
+                card1Title: 'التخليص الجمركي للتصدير وإصدار الفواتير',
+                card1_1: 'التصريح والتخليص الجمركي للاستيراد والتصدير',
+                card1_2: 'إعداد وإصدار الفاتورة التجارية',
+                card1_3: 'دعم استخراج شهادة المنشأ',
+                card1_4: 'استشارات التعريفات التفضيلية لاتفاقية FTA',
+                card1_5: 'طلبات استرداد الرسوم الجمركية',
+                card2Title: 'تسجيل وإدارة الأعمال الأجنبية',
+                card2_1: 'تأسيس الشركات الأجنبية وتسجيلها',
+                card2_2: 'إدارة حسابات الشركات',
+                card2_3: 'تقديم إقرار ضريبة القيمة المضافة واسترداد سريع',
+                card2_4: 'مستشار ضريبي متخصص في تصدير السيارات',
+                card3Title: 'خدمة شاملة للمشترين المقيمين في كوريا',
+                card3_1: 'دعم الحصول على دعوة وتأشيرة للمشتري وعائلته',
+                card3_2: 'تقديم طلب K-ETA والموافقة المسبقة',
+                card3_3: 'دعم تسجيل عنوان الإقامة في كوريا',
+                card4Title: 'خدمات الشحن واللوجستيات',
+                card4_1: 'خدمة تثبيت السيارات في الحاويات',
+                card4_2: 'شحن السيارات بالحاويات وسفن Ro-Ro',
+                sidebarPartners: 'الشركاء',
+                sidebarContacts: 'جهات الاتصال',
+                contact1: 'المسؤول 1',
+                contact2: 'المسؤول 2',
+            },
+        };
+
+        function setLanguage(lang) {
+            const t = translations[lang];
+            if (!t) return;
+
+            // Update plain text elements
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (t[key] !== undefined) {
+                    el.textContent = t[key];
+                }
+            });
+
+            // Update HTML elements (containing spans / br tags)
+            document.querySelectorAll('[data-i18n-html]').forEach(el => {
+                const key = el.getAttribute('data-i18n-html');
+                if (t[key] !== undefined) {
+                    el.innerHTML = t[key];
+                }
+            });
+
+            // RTL support for Arabic
+            if (lang === 'ar') {
+                document.body.classList.add('rtl');
+                document.documentElement.setAttribute('lang', 'ar');
+                document.documentElement.setAttribute('dir', 'rtl');
+            } else {
+                document.body.classList.remove('rtl');
+                document.documentElement.setAttribute('lang', lang);
+                document.documentElement.removeAttribute('dir');
+            }
+        }
+
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const mainContent = document.getElementById('mainContent');
+
+            sidebar.classList.toggle('collapsed');
+            mainContent.classList.toggle('expanded');
+        }
+
+        // Initialize with Korean on page load
+        setLanguage('ko');
+    </script>
+</body>
+</html>
