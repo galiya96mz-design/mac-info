@@ -114,7 +114,12 @@
             background: var(--primary-blue);
             backdrop-filter: blur(20px);
             border-bottom: 2px solid var(--primary-lightblue);
-            padding: 15px 40px;
+            padding: 10px 40px;
+        }
+
+        .header-inner {
+            max-width: 1440px;
+            margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -127,15 +132,15 @@
         }
 
         .logo-icon {
-            width: 80px;
-            height: 80px;
+            width: 46px;
+            height: 46px;
             background-color: #1A4EB8;
-            border-radius: 12px;
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--primary-white);
-            font-size: 24px;
+            font-size: 16px;
             font-weight: 800;
             box-shadow: 0 4px 15px rgba(36, 102, 235, 0.3);
         }
@@ -143,7 +148,7 @@
         .logo-text {
             font-family: 'Outfit', sans-serif;
             font-weight: 700;
-            font-size: 22px;
+            font-size: 16px;
             background: var(--primary-white);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -191,37 +196,39 @@
         /* Main Wrapper */
         .main-wrapper {
             display: flex;
-            padding-top: 100px;
+            padding-top: 68px;
             min-height: 100vh;
             position: relative;
             z-index: 1;
+            max-width: 1440px;
+            margin: 0 auto;
         }
 
         /* Main Content */
         .main-content {
             flex: 1;
-            padding: 40px;
+            padding: 24px;
             transition: margin-right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            margin-right: 380px;
+            margin-right: 320px;
         }
 
         .main-content.expanded {
-            margin-right: 70px;
+            margin-right: 50px;
         }
 
         /* Top Section - 3 Column Grid */
         .top-section {
             display: grid;
             grid-template-columns: 1.1fr 1.4fr 1.2fr;
-            gap: 30px;
-            margin-bottom: 40px;
+            gap: 18px;
+            margin-bottom: 24px;
         }
 
         /* Brand Area */
         .brand-area {
             background: var(--card-bg);
-            border-radius: 24px;
-            padding: 40px;
+            border-radius: 16px;
+            padding: 22px;
             box-shadow: var(--shadow-soft);
             display: flex;
             flex-direction: column;
@@ -242,8 +249,8 @@
         }
 
         .subtitle-image {
-            width: 350px;
-            height: 10px;
+            width: 100%;
+            height: auto;
             background: white;
             border-radius: 20px;
             margin-bottom: 20px;
@@ -258,21 +265,21 @@
 
         .title-image {
             width: 100%;
-            height: 120px;
+            height: auto;
             background: linear-gradient(90deg, var(--primary-blue), var(--primary-lightblue), var(--primary-darkblue));
-            border-radius: 16px;
-            margin-bottom: 25px;
+            border-radius: 10px;
+            margin-bottom: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--primary-white);
-            font-size: 32px;
+            font-size: 20px;
             font-weight: 900;
             text-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
         .korean-tagline {
-            font-size: 26px;
+            font-size: 15px;
             color: var(--dark-navy);
             line-height: 1.8;
             font-weight: 500;
@@ -299,7 +306,7 @@
         .featured-image {
             width: 100%;
             height: 100%;
-            min-height: 300px;
+            min-height: 200px;
             background: linear-gradient(135deg,
                 var(--primary-softblue) 0%,
                 var(--primary-white) 50%,
@@ -314,7 +321,7 @@
             content: '';
             position: absolute;
             inset: 20px;
-            border: 3px dashed var(--primary-blue);
+            
             border-radius: 16px;
         }
 
@@ -338,8 +345,8 @@
         /* Services Area */
         .services-area {
             background: var(--card-bg);
-            border-radius: 24px;
-            padding: 35px;
+            border-radius: 16px;
+            padding: 20px;
             box-shadow: var(--shadow-soft);
             border: 1px solid rgba(36, 102, 235, 0.3);
             position: relative;
@@ -357,9 +364,9 @@
         }
 
         .services-title {
-            font-size: 26px;
+            font-size: 16px;
             font-weight: 800;
-            margin-bottom: 25px;
+            margin-bottom: 15px;
             color: var(--dark-navy);
             display: flex;
             align-items: center;
@@ -378,9 +385,9 @@
         .service-item {
             display: flex;
             align-items: flex-start;
-            gap: 15px;
-            padding: 15px;
-            margin-bottom: 12px;
+            gap: 10px;
+            padding: 10px;
+            margin-bottom: 8px;
             background: linear-gradient(135deg, rgba(36, 102, 235, 0.1), rgba(90, 143, 240, 0.05));
             border-radius: 14px;
             transition: all 0.3s ease;
@@ -401,13 +408,13 @@
         }
 
         .service-icon {
-            width: 45px;
-            height: 45px;
-            border-radius: 12px;
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 18px;
+            font-size: 13px;
             color: white;
             flex-shrink: 0;
         }
@@ -418,7 +425,7 @@
         .service-item:nth-child(5) .service-icon { background: var(--primary-paleblue); color: var(--dark-navy); }
 
         .service-desc {
-            font-size: 20px;
+            font-size: 13px;
             color: var(--dark-navy);
             line-height: 1.6;
             font-weight: 500;
@@ -430,15 +437,15 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
             font-weight: 700;
-            font-size: 22px;
+            font-size: 14px;
         }
 
         /* Bottom Section Title */
         .bottom-section-title {
-            font-size: 32px;
+            font-size: 18px;
             font-weight: 800;
             color: var(--dark-navy);
-            margin-bottom: 25px;
+            margin-bottom: 15px;
             display: flex;
             align-items: center;
             gap: 14px;
@@ -462,13 +469,13 @@
         .bottom-section {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 25px;
+            gap: 16px;
         }
 
         .service-card {
             background: var(--card-bg);
-            border-radius: 24px;
-            padding: 30px 25px;
+            border-radius: 16px;
+            padding: 18px 16px;
             box-shadow: var(--shadow-soft);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
@@ -503,15 +510,15 @@
         .service-card:nth-child(4):hover { border-color: rgba(168, 200, 255, 0.5); }
 
         .card-icon {
-            width: 60px;
-            height: 60px;
-            border-radius: 16px;
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 26px;
+            font-size: 16px;
             color: white;
-            margin-bottom: 20px;
+            margin-bottom: 12px;
             position: relative;
         }
 
@@ -521,10 +528,10 @@
         .service-card:nth-child(4) .card-icon { background: var(--primary-blue); color: var(--primary-white); box-shadow: 0 8px 25px rgba(168, 200, 255, 0.4); }
 
         .card-title {
-            font-size: 24px;
+            font-size: 14px;
             font-weight: 700;
             color: var(--dark-navy);
-            margin-bottom: 18px;
+            margin-bottom: 10px;
             line-height: 1.4;
         }
 
@@ -534,9 +541,9 @@
 
         .card-bullets li {
             position: relative;
-            padding-left: 22px;
-            margin-bottom: 12px;
-            font-size: 20px;
+            padding-left: 16px;
+            margin-bottom: 7px;
+            font-size: 12px;
             color: #555;
             line-height: 1.6;
         }
@@ -569,21 +576,21 @@
         /* Right Sidebar */
         .sidebar {
             position: fixed;
-            right: 0;
-            top: 82px;
+            right: max(0px, calc((100vw - 1440px) / 2));
+            top: 68px;
             bottom: 0;
-            width: 360px;
+            width: 300px;
             background: var(--primary-blue);
             backdrop-filter: blur(20px);
             border-left: 2px solid var(--primary-lightblue);
-            padding: 35px 30px;
+            padding: 20px 18px;
             overflow-y: auto;
             transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             z-index: 100;
         }
 
         .sidebar.collapsed {
-            transform: translateX(290px);
+            transform: translateX(230px);
         }
 
         .sidebar-toggle {
@@ -618,11 +625,11 @@
         }
 
         .sidebar-section {
-            margin-bottom: 35px;
+            margin-bottom: 20px;
         }
 
         .sidebar-heading {
-            font-size: 20px;
+            font-size: 12px;
             font-weight: 700;
             color: var(--primary-white);
             text-transform: uppercase;
@@ -678,22 +685,22 @@
         /* Contacts */
         .contact-item {
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05));
-            border-radius: 16px;
-            padding: 20px;
-            padding-right: 20px;
-            margin-bottom: 15px;
+            border-radius: 10px;
+            padding: 12px;
+            padding-right: 12px;
+            margin-bottom: 10px;
             border: 1px solid rgba(255, 255, 255, 0.3);
         }
 
         .contact-name {
-            font-size: 18px;
+            font-size: 13px;
             font-weight: 700;
             color: var(--primary-white);
             margin-bottom: 5px;
         }
 
         .contact-phone {
-            font-size: 16px;
+            font-size: 12px;
             color: rgba(255, 255, 255, 0.8);
             margin-bottom: 15px;
             display: flex;
@@ -712,10 +719,10 @@
 
         .contact-btn {
             flex: 1;
-            padding: 12px 18px;
+            padding: 7px 10px;
             border: none;
-            border-radius: 10px;
-            font-size: 14px;
+            border-radius: 7px;
+            font-size: 11px;
             font-weight: 600;
             cursor: pointer;
             display: flex;
@@ -763,11 +770,11 @@
             }
 
             .main-content {
-                margin-right: 70px;
+                margin-right: 50px;
             }
 
             .sidebar {
-                transform: translateX(290px);
+                transform: translateX(230px);
             }
 
             .sidebar.expanded {
@@ -777,7 +784,7 @@
 
         @media (max-width: 768px) {
             .main-content {
-                padding: 20px;
+                padding: 16px;
                 margin-right: 0;
             }
 
@@ -786,7 +793,7 @@
             }
 
             header {
-                padding: 15px 20px;
+                padding: 10px 16px;
             }
 
             .sidebar {
@@ -804,19 +811,21 @@
 
     <!-- Header -->
     <header>
-        <div class="logo">
-            <div class="logo-icon">
-            <img src="./logo-mac.jpg" alt="MAC GLOBAL 로고" style="width: 80px; height: auto;"></div>
-        </div>
-        <div class="lang-select-wrapper">
-            <select class="lang-select" id="langSelect" onchange="setLanguage(this.value)">
-                <option value="ko" selected>🇰🇷 한국어</option>
-                <option value="en">🇺🇸 English</option>
-                <option value="ru">🇷🇺 Русский</option>
-                <option value="kk">🇰🇿 Қазақша</option>
-                <option value="ar">🇸🇦 العربية</option>
-            </select>
-            <i class="fas fa-chevron-down lang-select-arrow"></i>
+        <div class="header-inner">
+            <div class="logo">
+                <div class="logo-icon">
+                <img src="./logo-mac.jpg" alt="MAC GLOBAL 로고" style="width: 46px; height: auto;"></div>
+            </div>
+            <div class="lang-select-wrapper">
+                <select class="lang-select" id="langSelect" onchange="setLanguage(this.value)">
+                    <option value="ko" selected>🇰🇷 한국어</option>
+                    <option value="en">🇺🇸 English</option>
+                    <option value="ru">🇷🇺 Русский</option>
+                    <option value="kk">🇰🇿 Қазақша</option>
+                    <option value="ar">🇸🇦 العربية</option>
+                </select>
+                <i class="fas fa-chevron-down lang-select-arrow"></i>
+            </div>
         </div>
     </header>
 
@@ -829,10 +838,10 @@
                 <!-- Brand Area -->
                 <div class="brand-area">
                     <div class="subtitle-image">
-                        <p data-i18n-html="subtitle" style="font-size: 26px; color: rgb(205, 15, 15); font-weight: 700;"><span>수출 지원 센터</span></p>
+                        <p data-i18n-html="subtitle" style="font-size: 14px; color: rgb(205, 15, 15); font-weight: 700;"><span>수출 지원 센터</span></p>
                     </div>
                     <div class="title-image">
-                        <img src="./title.png" alt="수출 지원 센터" style="width: 360px; height: auto;">
+                        <img src="./title.png" alt="수출 지원 센터" style="width: 100%; height: auto;">
                     </div>
                     <p class="korean-tagline" data-i18n-html="tagline">
                         <span>외국인 바이어</span>를 위한<br>
@@ -844,7 +853,7 @@
                 <!-- Image Area -->
                 <div class="image-area">
                     <div class="featured-image">
-                        <img src="./process.png" style="width: 560px; height: auto;">
+                        <img src="./process.png" style="width: 100%; height: auto; max-width: 100%;">
                     </div>
                 </div>
 
