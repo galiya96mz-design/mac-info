@@ -696,10 +696,15 @@
             background: var(--primary-blue);
             backdrop-filter: blur(20px);
             border-left: 2px solid var(--primary-lightblue);
-            padding: 20px 18px;
-            overflow-y: auto;
+            overflow: visible;
             transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             z-index: 100;
+        }
+
+        .sidebar-inner {
+            height: 100%;
+            overflow-y: auto;
+            padding: 20px 18px;
         }
 
         .sidebar.collapsed {
@@ -723,6 +728,7 @@
             font-size: 16px;
             box-shadow: 0 4px 15px rgba(36, 102, 235, 0.4);
             transition: all 0.3s ease;
+            z-index: 201;
         }
 
         .sidebar-toggle:hover {
@@ -1229,6 +1235,7 @@
                 <i class="fas fa-chevron-right"></i>
             </button>
 
+            <div class="sidebar-inner">
             <!-- Partners Section -->
             <div class="sidebar-section">
                 <h4 class="sidebar-heading" data-i18n="sidebarPartners">파트너</h4>
@@ -1301,6 +1308,7 @@
                     </div>
                 </div>
             </div>
+            </div><!-- end sidebar-inner -->
         </aside>
     </div>
 
