@@ -115,11 +115,11 @@
             backdrop-filter: blur(20px);
             border-bottom: 2px solid var(--primary-lightblue);
             padding: 10px 40px;
+            box-shadow: 0 4px 30px rgba(36, 102, 235, 0.4);
         }
 
         .header-inner {
-            max-width: 1440px;
-            margin: 0 auto;
+            width: 100%;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -128,31 +128,43 @@
         .logo {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 14px;
         }
 
         .logo-icon {
-            width: 46px;
-            height: 46px;
-            background-color: #1A4EB8;
-            border-radius: 8px;
+            width: 76px;
+            height: 64px;
+            background-color:  #1A4EB8;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--primary-white);
-            font-size: 16px;
-            font-weight: 800;
-            box-shadow: 0 4px 15px rgba(36, 102, 235, 0.3);
+            box-shadow: 0 4px 20px rgba(255,255,255,0.5), 0 0 30px rgba(255,255,255,0.2);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .logo-icon:hover {
+            transform: scale(1.08);
+            box-shadow: 0 6px 30px rgba(255,255,255,0.7);
         }
 
         .logo-text {
             font-family: 'Outfit', sans-serif;
-            font-weight: 700;
-            font-size: 16px;
-            background: var(--primary-white);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            font-weight: 800;
+            font-size: 22px;
+            color: white;
+            letter-spacing: 0.5px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .logo-subtext {
+            font-family: 'Outfit', sans-serif;
+            font-size: 11px;
+            font-weight: 400;
+            color: rgba(255,255,255,0.75);
+            letter-spacing: 2px;
+            text-transform: uppercase;
         }
 
         /* Language Dropdown */
@@ -196,12 +208,11 @@
         /* Main Wrapper */
         .main-wrapper {
             display: flex;
-            padding-top: 68px;
+            padding-top: 86px;
             min-height: 100vh;
             position: relative;
             z-index: 1;
-            max-width: 1440px;
-            margin: 0 auto;
+            width: 100%;
         }
 
         /* Main Content */
@@ -209,11 +220,12 @@
             flex: 1;
             padding: 24px;
             transition: margin-right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            margin-right: 320px;
+            margin-right: 310px;
+            min-width: 0;
         }
 
         .main-content.expanded {
-            margin-right: 50px;
+            margin-right: 80px;
         }
 
         /* Top Section - 3 Column Grid */
@@ -227,8 +239,8 @@
         /* Brand Area */
         .brand-area {
             background: var(--card-bg);
-            border-radius: 16px;
-            padding: 22px;
+            border-radius: 20px;
+            padding: 28px;
             box-shadow: var(--shadow-soft);
             display: flex;
             flex-direction: column;
@@ -236,6 +248,12 @@
             position: relative;
             overflow: hidden;
             border: 1px solid rgba(36, 102, 235, 0.3);
+            animation: brandGlow 4s ease-in-out infinite;
+        }
+
+        @keyframes brandGlow {
+            0%, 100% { box-shadow: 0 10px 40px rgba(0,0,0,0.1), 0 0 0 0 rgba(36,102,235,0); }
+            50% { box-shadow: 0 10px 40px rgba(0,0,0,0.1), 0 0 30px 4px rgba(36,102,235,0.15); }
         }
 
         .brand-area::before {
@@ -279,9 +297,9 @@
         }
 
         .korean-tagline {
-            font-size: 15px;
+            font-size: 24px;
             color: var(--dark-navy);
-            line-height: 1.8;
+            line-height: 1.9;
             font-weight: 500;
         }
 
@@ -290,7 +308,7 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            font-weight: 700;
+            font-weight: 800;
         }
 
         /* Image Area */
@@ -364,7 +382,7 @@
         }
 
         .services-title {
-            font-size: 16px;
+            font-size: 20px;
             font-weight: 800;
             margin-bottom: 15px;
             color: var(--dark-navy);
@@ -385,18 +403,21 @@
         .service-item {
             display: flex;
             align-items: flex-start;
-            gap: 10px;
-            padding: 10px;
-            margin-bottom: 8px;
+            gap: 12px;
+            padding: 14px;
+            margin-bottom: 10px;
             background: linear-gradient(135deg, rgba(36, 102, 235, 0.1), rgba(90, 143, 240, 0.05));
             border-radius: 14px;
             transition: all 0.3s ease;
             cursor: pointer;
+            border: 1px solid transparent;
         }
 
         .service-item:hover {
             transform: translateX(8px);
-            box-shadow: 0 5px 20px rgba(36, 102, 235, 0.3);
+            box-shadow: 0 6px 24px rgba(36, 102, 235, 0.3);
+            border-color: rgba(36, 102, 235, 0.25);
+            background: linear-gradient(135deg, rgba(36, 102, 235, 0.15), rgba(90, 143, 240, 0.08));
         }
 
         body.rtl .service-item:hover {
@@ -408,15 +429,16 @@
         }
 
         .service-icon {
-            width: 32px;
-            height: 32px;
-            border-radius: 8px;
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 13px;
+            font-size: 20px;
             color: white;
             flex-shrink: 0;
+            box-shadow: 0 4px 12px rgba(36,102,235,0.3);
         }
 
         .service-item:nth-child(2) .service-icon { background: var(--primary-blue); color: var(--primary-white); }
@@ -425,9 +447,9 @@
         .service-item:nth-child(5) .service-icon { background: var(--primary-paleblue); color: var(--dark-navy); }
 
         .service-desc {
-            font-size: 13px;
+            font-size: 20px;
             color: var(--dark-navy);
-            line-height: 1.6;
+            line-height: 1.7;
             font-weight: 500;
         }
 
@@ -436,16 +458,16 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            font-weight: 700;
-            font-size: 14px;
+            font-weight: 800;
+            font-size: 20px;
         }
 
         /* Bottom Section Title */
         .bottom-section-title {
-            font-size: 18px;
+            font-size: 20px;
             font-weight: 800;
             color: var(--dark-navy);
-            margin-bottom: 15px;
+            margin-bottom: 18px;
             display: flex;
             align-items: center;
             gap: 14px;
@@ -465,6 +487,22 @@
             order: 1;
         }
 
+        /* ── Auto-play animations for service cards ── */
+        @keyframes cardFloat {
+            0%, 100% { translate: 0 0px; }
+            50%       { translate: 0 -8px; }
+        }
+
+        @keyframes autoShimmer {
+            0%, 15%   { left: -60%; }
+            45%, 100% { left: 130%; }
+        }
+
+        @keyframes topBarPulse {
+            0%, 100% { opacity: 0.7; }
+            50%       { opacity: 1; filter: brightness(1.3); }
+        }
+
         /* Bottom Section - 4 Column Cards */
         .bottom-section {
             display: grid;
@@ -474,18 +512,37 @@
 
         .service-card {
             background: var(--card-bg);
-            border-radius: 16px;
-            padding: 18px 16px;
+            border-radius: 20px;
+            padding-top: 26px;
+            padding-left: 16px;
+            padding-right: 10px;
+            padding-bottom: 20px;
             box-shadow: var(--shadow-soft);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
             border: 1px solid transparent;
+            animation: cardFloat 4s ease-in-out infinite;
+        }
+
+        /* Shimmer effect on cards — auto-plays */
+        .service-card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -60%;
+            width: 40%;
+            height: 200%;
+            background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.45) 50%, transparent 60%);
+            transform: skewX(-20deg);
+            pointer-events: none;
+            animation: autoShimmer 5s ease-in-out infinite;
         }
 
         .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-medium);
+            transform: translateY(-12px);
+            box-shadow: 0 20px 60px rgba(36, 102, 235, 0.2);
+            animation-play-state: paused;
         }
 
         .service-card::before {
@@ -497,43 +554,97 @@
             height: 5px;
         }
 
-        .service-card:nth-child(1)::before { background: var(--primary-blue); }
-        .service-card:nth-child(1):hover { border-color: rgba(36, 102, 235, 0.5); }
+        /* Card 1 — vivid blue */
+        .service-card:nth-child(1) {
+            background: linear-gradient(145deg, #1a56db 0%, #2466eb 60%, #3b7bf5 100%);
+            border-color: rgba(59, 123, 245, 0.6);
+            animation-delay: 0s;
+        }
+        .service-card:nth-child(1)::before { background: rgba(255,255,255,0.35); }
+        .service-card:nth-child(1)::after  { animation-delay: 0.3s; }
+        .service-card:nth-child(1):hover   { border-color: rgba(255,255,255,0.5); box-shadow: 0 20px 60px rgba(36,102,235,0.5); }
 
-        .service-card:nth-child(2)::before { background: var(--primary-lightblue); }
-        .service-card:nth-child(2):hover { border-color: rgba(90, 143, 240, 0.5); }
+        /* Card 2 — teal / cyan */
+        .service-card:nth-child(2) {
+            background: linear-gradient(145deg, #0891b2 0%, #06b6d4 60%, #22d3ee 100%);
+            border-color: rgba(34, 211, 238, 0.5);
+            animation-delay: 1s;
+        }
+        .service-card:nth-child(2)::before { background: rgba(255,255,255,0.35); }
+        .service-card:nth-child(2)::after  { animation-delay: 1.3s; }
+        .service-card:nth-child(2):hover   { border-color: rgba(255,255,255,0.5); box-shadow: 0 20px 60px rgba(6,182,212,0.5); }
 
-        .service-card:nth-child(3)::before { background: var(--primary-darkblue); }
-        .service-card:nth-child(3):hover { border-color: rgba(26, 78, 184, 0.5); }
+        /* Card 3 — indigo / violet */
+        .service-card:nth-child(3) {
+            background: linear-gradient(145deg, #4f46e5 0%, #6366f1 60%, #818cf8 100%);
+            border-color: rgba(129, 140, 248, 0.5);
+            animation-delay: 2s;
+        }
+        .service-card:nth-child(3)::before { background: rgba(255,255,255,0.35); }
+        .service-card:nth-child(3)::after  { animation-delay: 2.3s; }
+        .service-card:nth-child(3):hover   { border-color: rgba(255,255,255,0.5); box-shadow: 0 20px 60px rgba(99,102,241,0.5); }
 
-        .service-card:nth-child(4)::before { background: var(--primary-paleblue); }
-        .service-card:nth-child(4):hover { border-color: rgba(168, 200, 255, 0.5); }
+        /* Card 4 — emerald green */
+        .service-card:nth-child(4) {
+            background: linear-gradient(145deg, #059669 0%, #10b981 60%, #34d399 100%);
+            border-color: rgba(52, 211, 153, 0.5);
+            animation-delay: 3s;
+        }
+        .service-card:nth-child(4)::before { background: rgba(255,255,255,0.35); }
+        .service-card:nth-child(4)::after  { animation-delay: 3.3s; }
+        .service-card:nth-child(4):hover   { border-color: rgba(255,255,255,0.5); box-shadow: 0 20px 60px rgba(16,185,129,0.5); }
+
+        /* Top accent bar pulses — shared */
+        .service-card::before { animation: topBarPulse 4s ease-in-out infinite; }
+        .service-card:nth-child(1)::before { animation-delay: 0s; }
+        .service-card:nth-child(2)::before { animation-delay: 1s; }
+        .service-card:nth-child(3)::before { animation-delay: 2s; }
+        .service-card:nth-child(4)::before { animation-delay: 3s; }
 
         .card-icon {
-            width: 38px;
-            height: 38px;
-            border-radius: 10px;
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
             display: flex;
             align-items: center;
+            gap: 10px;
             justify-content: center;
-            font-size: 16px;
+            font-size: 22px;
             color: white;
-            margin-bottom: 12px;
+            margin-bottom: 16px;
             position: relative;
+            transition: transform 0.3s ease;
+        }
+        .card-header {
+            display: flex;
+  align-items: center;
+  gap: 12px;
         }
 
-        .service-card:nth-child(1) .card-icon { background: var(--primary-blue); color: var(--primary-white); box-shadow: 0 8px 25px rgba(36, 102, 235, 0.4); }
-        .service-card:nth-child(2) .card-icon { background: var(--primary-lightblue); color: var(--primary-white); box-shadow: 0 8px 25px rgba(90, 143, 240, 0.4); }
-        .service-card:nth-child(3) .card-icon { background: var(--primary-darkblue); color: var(--primary-white); box-shadow: 0 8px 25px rgba(26, 78, 184, 0.4); }
-        .service-card:nth-child(4) .card-icon { background: var(--primary-blue); color: var(--primary-white); box-shadow: 0 8px 25px rgba(168, 200, 255, 0.4); }
+        .service-card:hover .card-icon {
+            transform: scale(1.15) rotate(-5deg);
+        }
+
+        /* Icon: frosted white pill on colored card */
+        .service-card .card-icon {
+            background: rgba(255,255,255,0.2);
+            color: #fff;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+            backdrop-filter: blur(6px);
+        }
 
         .card-title {
-            font-size: 14px;
-            font-weight: 700;
-            color: var(--dark-navy);
-            margin-bottom: 10px;
+            font-size: 17px;
+            font-weight: 800;
+            margin-bottom: 14px;
             line-height: 1.4;
         }
+
+        /* Title color — light pastel matching each card */
+        .service-card:nth-child(1) .card-title { color: #fefefe; }
+        .service-card:nth-child(2) .card-title { color: #f6f6f6; }
+        .service-card:nth-child(3) .card-title { color: #f6f6f6; }
+        .service-card:nth-child(4) .card-title { color: #ffffff; }
 
         .card-bullets {
             list-style: none;
@@ -541,12 +652,18 @@
 
         .card-bullets li {
             position: relative;
-            padding-left: 16px;
-            margin-bottom: 7px;
-            font-size: 12px;
-            color: #555;
+            padding-left: 18px;
+            margin-bottom: 9px;
+            font-size: 20px;
             line-height: 1.6;
+            font-weight: 500;
         }
+
+        /* Bullet text color — softer pastel matching each card */
+        .service-card:nth-child(1) .card-bullets li { color: #dbeafe; }
+        .service-card:nth-child(2) .card-bullets li { color: #cffafe; }
+        .service-card:nth-child(3) .card-bullets li { color: #e0e7ff; }
+        .service-card:nth-child(4) .card-bullets li { color: #d1fae5; }
 
         body.rtl .card-bullets li {
             padding-left: 0;
@@ -561,6 +678,7 @@
             width: 8px;
             height: 8px;
             border-radius: 50%;
+            background: rgba(255,255,255,0.5);
         }
 
         body.rtl .card-bullets li::before {
@@ -568,16 +686,11 @@
             right: 0;
         }
 
-        .service-card:nth-child(1) .card-bullets li::before { background: var(--primary-blue); }
-        .service-card:nth-child(2) .card-bullets li::before { background: var(--primary-lightblue); }
-        .service-card:nth-child(3) .card-bullets li::before { background: var(--primary-darkblue); }
-        .service-card:nth-child(4) .card-bullets li::before { background: var(--primary-paleblue); }
-
         /* Right Sidebar */
         .sidebar {
             position: fixed;
-            right: max(0px, calc((100vw - 1440px) / 2));
-            top: 68px;
+            right: 0;
+            top: 86px;
             bottom: 0;
             width: 300px;
             background: var(--primary-blue);
@@ -629,7 +742,7 @@
         }
 
         .sidebar-heading {
-            font-size: 12px;
+            font-size: 14px;
             font-weight: 700;
             color: var(--primary-white);
             text-transform: uppercase;
@@ -693,15 +806,15 @@
         }
 
         .contact-name {
-            font-size: 13px;
+            font-size: 16px;
             font-weight: 700;
             color: var(--primary-white);
-            margin-bottom: 5px;
+            margin-bottom: 6px;
         }
 
         .contact-phone {
-            font-size: 12px;
-            color: rgba(255, 255, 255, 0.8);
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.85);
             margin-bottom: 15px;
             display: flex;
             align-items: center;
@@ -719,11 +832,11 @@
 
         .contact-btn {
             flex: 1;
-            padding: 7px 10px;
+            padding: 9px 12px;
             border: none;
-            border-radius: 7px;
-            font-size: 11px;
-            font-weight: 600;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 700;
             cursor: pointer;
             display: flex;
             align-items: center;
@@ -757,6 +870,94 @@
             box-shadow: 0 4px 15px rgba(37, 211, 102, 0.5);
         }
 
+        /* Pulse ring on image area */
+        .image-area {
+            animation: imagePulse 5s ease-in-out infinite;
+        }
+
+        @keyframes imagePulse {
+            0%, 100% { box-shadow: 0 10px 40px rgba(0,0,0,0.1); }
+            50% { box-shadow: 0 10px 40px rgba(0,0,0,0.1), 0 0 0 6px rgba(36,102,235,0.08); }
+        }
+
+        /* Sparkle dots on brand area */
+        .brand-area .spark {
+            position: absolute;
+            border-radius: 50%;
+            background: var(--primary-blue);
+            opacity: 0;
+            animation: sparkle 3s ease-in-out infinite;
+        }
+
+        .brand-area .spark:nth-child(1) { width: 6px; height: 6px; top: 20%; right: 15%; animation-delay: 0s; }
+        .brand-area .spark:nth-child(2) { width: 4px; height: 4px; top: 60%; right: 8%; animation-delay: 0.8s; }
+        .brand-area .spark:nth-child(3) { width: 5px; height: 5px; top: 40%; right: 25%; animation-delay: 1.6s; }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; transform: scale(0); }
+            50% { opacity: 0.6; transform: scale(1); }
+        }
+
+        /* Services area hover glow */
+        .services-area {
+            transition: box-shadow 0.3s ease;
+        }
+
+        .services-area:hover {
+            box-shadow: 0 10px 40px rgba(36,102,235,0.15);
+        }
+
+        /* Partner logo hover scale */
+        .partner-logo img {
+            transition: transform 0.3s ease;
+        }
+
+        .partner-link:hover .partner-logo img {
+            transform: scale(1.1);
+        }
+
+        /* Animated underline on section titles */
+        .bottom-section-title {
+            position: relative;
+        }
+
+        /* Mobile sidebar toggle button (header) */
+        .mobile-sidebar-btn {
+            display: none;
+            background: var(--primary-white);
+            border: none;
+            border-radius: 8px;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-blue);
+            font-size: 18px;
+            box-shadow: 0 2px 10px rgba(255,255,255,0.3);
+            transition: all 0.3s ease;
+        }
+
+        .mobile-sidebar-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* Overlay for mobile sidebar */
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 99;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .sidebar-overlay.active {
+            display: block;
+            opacity: 1;
+        }
+
         /* Responsive */
         @media (max-width: 1400px) {
             .bottom-section {
@@ -770,7 +971,7 @@
             }
 
             .main-content {
-                margin-right: 50px;
+                margin-right: 80px;
             }
 
             .sidebar {
@@ -783,9 +984,13 @@
         }
 
         @media (max-width: 768px) {
+            .mobile-sidebar-btn {
+                display: flex;
+            }
+
             .main-content {
                 padding: 16px;
-                margin-right: 0;
+                margin-right: 0 !important;
             }
 
             .bottom-section {
@@ -793,12 +998,53 @@
             }
 
             header {
-                padding: 10px 16px;
+                padding: 8px 16px;
+            }
+
+            .logo-text {
+                font-size: 18px;
+            }
+
+            .logo-subtext {
+                display: none;
+            }
+
+            .logo-icon {
+                width: 50px;
+                height: 50px;
             }
 
             .sidebar {
-                width: 100%;
+                width: 85%;
+                max-width: 320px;
                 transform: translateX(100%);
+                z-index: 200;
+                top: 86px;
+            }
+
+            .sidebar.mobile-open {
+                transform: translateX(0);
+            }
+
+            .sidebar-toggle {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .top-section {
+                gap: 12px;
+                margin-bottom: 16px;
+            }
+
+            .bottom-section {
+                gap: 12px;
+            }
+
+            .lang-select {
+                min-width: 120px;
+                font-size: 12px;
+                padding: 8px 36px 8px 12px;
             }
         }
     </style>
@@ -814,17 +1060,24 @@
         <div class="header-inner">
             <div class="logo">
                 <div class="logo-icon">
-                <img src="./logo-mac.jpg" alt="MAC GLOBAL 로고" style="width: 46px; height: auto;"></div>
+                    <img src="./logo-mac.jpg" alt="MAC GLOBAL 로고" style="width: 90px; height: auto;">
+                </div>
+               
             </div>
-            <div class="lang-select-wrapper">
-                <select class="lang-select" id="langSelect" onchange="setLanguage(this.value)">
-                    <option value="ko" selected>🇰🇷 한국어</option>
-                    <option value="en">🇺🇸 English</option>
-                    <option value="ru">🇷🇺 Русский</option>
-                    <option value="kk">🇰🇿 Қазақша</option>
-                    <option value="ar">🇸🇦 العربية</option>
-                </select>
-                <i class="fas fa-chevron-down lang-select-arrow"></i>
+            <div style="display:flex; align-items:center; gap:10px;">
+                <button class="mobile-sidebar-btn" onclick="toggleMobileSidebar()" aria-label="Open contacts">
+                    <i class="fas fa-address-book"></i>
+                </button>
+                <div class="lang-select-wrapper">
+                    <select class="lang-select" id="langSelect" onchange="setLanguage(this.value)">
+                        <option value="ko" selected>🇰🇷 한국어</option>
+                        <option value="en">🇺🇸 English</option>
+                        <option value="ru">🇷🇺 Русский</option>
+                        <option value="kk">🇰🇿 Қазақша</option>
+                        <option value="ar">🇸🇦 العربية</option>
+                    </select>
+                    <i class="fas fa-chevron-down lang-select-arrow"></i>
+                </div>
             </div>
         </div>
     </header>
@@ -837,8 +1090,11 @@
             <section class="top-section">
                 <!-- Brand Area -->
                 <div class="brand-area">
+                    <div class="spark"></div>
+                    <div class="spark"></div>
+                    <div class="spark"></div>
                     <div class="subtitle-image">
-                        <p data-i18n-html="subtitle" style="font-size: 14px; color: rgb(205, 15, 15); font-weight: 700;"><span>수출 지원 센터</span></p>
+                        <p data-i18n-html="subtitle" style="font-size: 24px; color: rgb(205, 15, 15); font-weight: 700;"><span>수출 지원 센터</span></p>
                     </div>
                     <div class="title-image">
                         <img src="./title.png" alt="수출 지원 센터" style="width: 100%; height: auto;">
@@ -896,10 +1152,15 @@
             <section class="bottom-section">
                 <!-- Card 1 -->
                 <div class="service-card">
-                    <div class="card-icon">
-                        <i class="fas fa-file-export"></i>
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-file-export"></i>
+                        </div>
+                        <div>
+                            <h3 class="card-title" data-i18n="card1Title">수출 통관 및 인보이스 발행 서비스</h3>
+                        </div>
                     </div>
-                    <h3 class="card-title" data-i18n="card1Title">수출 통관 및 인보이스 발행 서비스</h3>
+                    
                     <ul class="card-bullets">
                         <li data-i18n="card1_1">수출입 신고 및 통관 업무 대행</li>
                         <li data-i18n="card1_2">Commercial Invoice 작성 및 발행</li>
@@ -911,26 +1172,33 @@
 
                 <!-- Card 2 -->
                 <div class="service-card">
-                    <div class="card-icon">
-                        <i class="fas fa-briefcase"></i>
-                    </div>
-                    <h3 class="card-title" data-i18n="card2Title">외국인 사업자 등록 및 관리 서비스</h3>
-                    <ul class="card-bullets">
-                        <li data-i18n="card2_1">외국인 법인 설립 및 사업자등록 대행</li>
-                        <li data-i18n="card2_2">법인통장 입출금 관리 지원</li>
-                        <li data-i18n="card2_3">부가세 신고 및 신속한 환급 신청</li>
-                        <li data-i18n="card2_4">중고차 수출 전문 세무사 상주, 맞춤 절세 상담</li>
-                    </ul>
-                </div>
+    <div class="card-header">
+        <div class="card-icon">
+            <i class="fas fa-briefcase"></i>
+        </div>
+        <h3 class="card-title" data-i18n="card2Title">
+            외국인 사업자 등록 및 관리 서비스
+        </h3>
+    </div>
+
+    <ul class="card-bullets">
+        <li data-i18n="card2_1">외국인 법인 설립 및 사업자등록 대행</li>
+        <li data-i18n="card2_2">법인통장 입출금 관리 지원</li>
+        <li data-i18n="card2_3">부가세 신고 및 신속한 환급 신청</li>
+        <li data-i18n="card2_4">중고차 수출 전문 세무사 상주, 맞춤 절세 상담</li>
+    </ul>
+</div>
 
                 <!-- Card 3 -->
                 <div class="service-card">
-                    <div class="card-icon">
-                        <i class="fas fa-user-tie"></i>
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <h3 class="card-title" data-i18n="card3Title">한국 체류 바이어 원스톱 서비스</h3>
                     </div>
-                    <h3 class="card-title" data-i18n="card3Title">한국 체류 바이어 원스톱 서비스</h3>
                     <ul class="card-bullets">
-                        <li data-i18n="card3_1">바이어 및 가족 초청장 & 비자 발급 지원</li>
+                        <li data-i18n="card3_1">바이어 및 가족 초청장, 비자 발급 지원</li>
                         <li data-i18n="card3_2">K-ETA 신청 대행 & 사전 승인 서비스</li>
                         <li data-i18n="card3_3">국내 거주지 주소 등록 지원</li>
                     </ul>
@@ -938,10 +1206,12 @@
 
                 <!-- Card 4 -->
                 <div class="service-card">
-                    <div class="card-icon">
-                        <i class="fas fa-boxes-stacked"></i>
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-boxes-stacked"></i>
+                        </div>
+                        <h3 class="card-title" data-i18n="card4Title">물류 서비스</h3>
                     </div>
-                    <h3 class="card-title" data-i18n="card4Title">물류 서비스</h3>
                     <ul class="card-bullets">
                         <li data-i18n="card4_1">중고차 쇼링 대행</li>
                         <li data-i18n="card4_2">중고차 컨테이너 및 로로선 배송대행</li>
@@ -949,6 +1219,9 @@
                 </div>
             </section>
         </main>
+
+        <!-- Mobile Overlay -->
+        <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleMobileSidebar()"></div>
 
         <!-- Right Sidebar -->
         <aside class="sidebar" id="sidebar">
@@ -960,27 +1233,27 @@
             <div class="sidebar-section">
                 <h4 class="sidebar-heading" data-i18n="sidebarPartners">파트너</h4>
                 <div class="partners-grid">
-                    <a href="https://autobell.co.kr/autoAuction/auctionGate" class="partner-link">
+                    <a href="https://autobell.co.kr/autoAuction/auctionGate" class="partner-link" target="_blank" rel="noopener noreferrer">
                         <div class="partner-logo">
                             <img src="./autobell.png" style="width: 100px; height: auto;" alt="MAC GLOBAL 로고">
                         </div>
                     </a>
-                    <a href="https://www.sellcarauction.co.kr/newfront/index.do" class="partner-link">
+                    <a href="https://www.sellcarauction.co.kr/newfront/index.do" class="partner-link" target="_blank" rel="noopener noreferrer">
                         <div class="partner-logo">
                             <img src="./autohub.png" style="width: 100px; height: auto;" alt="PARTNER B 로고">
                         </div>
                     </a>
-                    <a href="https://www.kcarauction.com/kcar/main.do" class="partner-link">
+                    <a href="https://www.kcarauction.com/kcar/main.do" class="partner-link" target="_blank" rel="noopener noreferrer">
                         <div class="partner-logo">
                             <img src="./kcar.png" style="width: 100px; height: auto;" alt="PARTNER C 로고">
                         </div>
                     </a>
-                    <a href="https://auction.skcarrental.com/" class="partner-link">
+                    <a href="https://auction.skcarrental.com/" class="partner-link" target="_blank" rel="noopener noreferrer">
                         <div class="partner-logo">
                             <img src="./sk.png" style="width: 100px; height: auto;" alt="PARTNER D 로고">
                         </div>
                     </a>
-                    <a href="https://www.lotteautoauction.net/hp/pub/cmm/viewMain.do" class="partner-link">
+                    <a href="https://www.lotteautoauction.net/hp/pub/cmm/viewMain.do" class="partner-link" target="_blank" rel="noopener noreferrer">
                         <div class="partner-logo">
                             <img src="./lotte.png" style="width: 100px; height: auto;" alt="PARTNER E 로고">
                         </div>
@@ -993,17 +1266,17 @@
                 <h4 class="sidebar-heading" data-i18n="sidebarContacts">연락처</h4>
 
                 <div class="contact-item">
-                    <div class="contact-name" data-i18n="contact1">담당자 1</div>
+                    <div class="contact-name" data-i18n="contact1">영어/아랍/한국 담당자</div>
                     <div class="contact-phone">
                         <i class="fas fa-phone"></i>
-                        +82-10-1234-5678
+                        +82-10-5665-4581
                     </div>
                     <div class="contact-buttons">
-                        <a href="#" class="contact-btn btn-kakao">
+                        <a href="kakaotalk://addfriend?phone=+821056654581" class="contact-btn btn-kakao">
                             <i class="fas fa-comment"></i>
                             KakaoTalk
                         </a>
-                        <a href="#" class="contact-btn btn-whatsapp">
+                        <a href="https://wa.me/821056654581" class="contact-btn btn-whatsapp">
                             <i class="fab fa-whatsapp"></i>
                             WhatsApp
                         </a>
@@ -1011,17 +1284,17 @@
                 </div>
 
                 <div class="contact-item">
-                    <div class="contact-name" data-i18n="contact2">담당자 2</div>
+                    <div class="contact-name" data-i18n="contact2">카자흐/러시아 담당자</div>
                     <div class="contact-phone">
                         <i class="fas fa-phone"></i>
-                        +82-10-9876-5432
+                        +82-10-7351-4479
                     </div>
                     <div class="contact-buttons">
                         <a href="#" class="contact-btn btn-kakao">
                             <i class="fas fa-comment"></i>
                             KakaoTalk
                         </a>
-                        <a href="#" class="contact-btn btn-whatsapp">
+                        <a href="https://wa.me/821073514479" class="contact-btn btn-whatsapp">
                             <i class="fab fa-whatsapp"></i>
                             WhatsApp
                         </a>
@@ -1062,8 +1335,8 @@
                 card4_2: '중고차 컨테이너 및 로로선 배송대행',
                 sidebarPartners: '파트너',
                 sidebarContacts: '연락처',
-                contact1: '담당자 1',
-                contact2: '담당자 2',
+                contact1: '영어 / 아랍어 / 한국어 담당자',
+                contact2: '카자흐어 / 러시아어 담당자',
             },
             en: {
                 subtitle: '<span>Export Support Center</span>',
@@ -1091,11 +1364,11 @@
                 card3_3: 'Domestic residence address registration support',
                 card4Title: 'Logistics Services',
                 card4_1: 'Used car shoring service',
-                card4_2: 'Used car container & RoRo vessel shipping',
+                card4_2: 'Used car container & roll-on/roll-off vessel shipping',
                 sidebarPartners: 'Partners',
                 sidebarContacts: 'Contacts',
-                contact1: 'Contact 1',
-                contact2: 'Contact 2',
+                contact1: 'English / Arabic / Korean Contact',
+                contact2: 'Kazakh / Russian Contact',
             },
             ru: {
                 subtitle: '<span>Центр поддержки экспорта</span>',
@@ -1123,11 +1396,11 @@
                 card3_3: 'Регистрация адреса проживания в Корее',
                 card4Title: 'Логистика',
                 card4_1: 'Агентирование по шорингу автомобилей',
-                card4_2: 'Доставка авто контейнером и Ро-Ро судном',
+                card4_2: 'Доставка авто контейнером и судном типа ро-ро (roll-on/roll-off)',
                 sidebarPartners: 'Партнёры',
                 sidebarContacts: 'Контакты',
-                contact1: 'Менеджер 1',
-                contact2: 'Менеджер 2',
+                contact1: 'Менеджер по английскому / арабскому / корейскому',
+                contact2: 'Менеджер по казахскому / русскому',
             },
             kk: {
                 subtitle: '<span>Экспортты қолдау орталығы</span>',
@@ -1155,11 +1428,11 @@
                 card3_3: 'Тұрғылықты мекенжайды тіркеуге қолдау',
                 card4Title: 'Логистика қызметтері',
                 card4_1: 'Автокөліктерді шорингтеу агенттігі',
-                card4_2: 'Контейнермен және Ро-Ро кемесімен жеткізу',
+                card4_2: 'Контейнермен және Ро-Ро (roll-on/roll-off) кемесімен жеткізу',
                 sidebarPartners: 'Серіктестер',
                 sidebarContacts: 'Байланыс',
-                contact1: 'Менеджер 1',
-                contact2: 'Менеджер 2',
+                contact1: 'Ағылшын / Араб / Корей Менеджер',
+                contact2: 'Қазақ / Орыс Менеджер',
             },
             ar: {
                 subtitle: '<span>مركز دعم الصادرات</span>',
@@ -1187,11 +1460,11 @@
                 card3_3: 'دعم تسجيل عنوان الإقامة في كوريا',
                 card4Title: 'خدمات الشحن واللوجستيات',
                 card4_1: 'خدمة تثبيت السيارات في الحاويات',
-                card4_2: 'شحن السيارات بالحاويات وسفن Ro-Ro',
+                card4_2: 'شحن السيارات بالحاويات وسفن Ro-Ro (roll-on/roll-off)',
                 sidebarPartners: 'الشركاء',
                 sidebarContacts: 'جهات الاتصال',
-                contact1: 'المسؤول 1',
-                contact2: 'المسؤول 2',
+                contact1: 'مسؤول الإنجليزية / العربية / الكورية',
+                contact2: 'مسؤول الكازاخية / الروسية',
             },
         };
 
@@ -1233,6 +1506,15 @@
 
             sidebar.classList.toggle('collapsed');
             mainContent.classList.toggle('expanded');
+        }
+
+        function toggleMobileSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+
+            sidebar.classList.toggle('mobile-open');
+            overlay.classList.toggle('active');
+            document.body.style.overflow = sidebar.classList.contains('mobile-open') ? 'hidden' : '';
         }
 
         // Initialize with Korean on page load
